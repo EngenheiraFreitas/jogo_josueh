@@ -27,9 +27,14 @@ function setup(){
     var canvas = createCanvas(1200,400);
     engine = Engine.create();
     world = engine.world;
-
-    ground = createSprite(600,350,1200,400);
-    ground.addImage(groundImg);
+    
+    var ground_options={
+       isStatic: true
+    }
+    
+    ground = Bodies.rectangle(600, 350,1200,10,ground_options);
+    World.add(world, ground);
+    
 
     viking = createSprite(201,300,50,60);
     viking.addImage(vikingImg);
@@ -43,8 +48,10 @@ function setup(){
 function draw(){
     background(bgImg);
     Engine.update(engine);
-    //imageMode(CENTER);
-   // image(bgImg,600,200,1200,400);
+    
+    imageMode(CENTER);
+    image(groundImg,ground.position.x,ground.position.y,1200,100);
+    
     magge.display();
 
     morseguinho();
